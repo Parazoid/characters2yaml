@@ -29,7 +29,7 @@ This requires the pyYAML module and Python 3.6 or higher.
 # ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 # OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
-import os, sys, subprocess, yaml
+import os, sys, subprocess
 from msvcrt import getwch
 
 cwd = os.getcwd() # Current working directory
