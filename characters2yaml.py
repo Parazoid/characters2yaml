@@ -88,7 +88,7 @@ def dump_characters(charyaml):
 # Handling a bunch of cases before dumping.
 def main():
     if "characters.yaml" in files:
-        choice.upper() = input("Found a 'characters.yaml' file in current directory. Add new characters? (Y/N/Q): ")
+        choice = input("Found a 'characters.yaml' file in current directory. Add new characters? (Y/N/Q): ")
         while choice.upper() not in {"Y", "N", "Q"}:
             print("Invalid input. Please try again.")
             choice = input("Found a 'characters.yaml' file in current directory. "
