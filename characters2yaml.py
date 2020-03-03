@@ -79,10 +79,10 @@ def dump_characters(charyaml):
         else:
             continue
     else:
-        print("Done dumping the character names to '" + os.path.basename(charyaml.name) + "'.")
+        print("Finished dumping the character names to '" + os.path.basename(charyaml.name) + "'.")
         print("Press any key to exit.")
         if getwch():
-            print("Exiting....")
+            print("Quitting....")
             sys.exit(1)
 
 # Handling a bunch of cases before dumping.
@@ -94,7 +94,7 @@ def main():
             choice = input("Found a 'characters.yaml' file in current directory. "
             "Add new characters? (Y/N/Q): ")
         if choice.upper() == "Q":
-            print("Exiting....")
+            print("Quitting....")
             sys.exit(1)
         elif choice.upper() == "Y":
             print("Adding new characters to 'Uncategorized'...")
@@ -114,11 +114,11 @@ print("Press any key to start (or Q to exit).")
 while True:
     cmd = getwch() # Instantly passes the user's input without needing to press enter.
     if cmd.upper() == "Q":
-        print("Exiting....")
+        print("Quitting....")
         sys.exit(1)
     elif os.path.basename(cwd) != "characters": # Checks that we're in /base/characters folder.
         print("Error: This script only works in the 'characters' folder.")
-        print("Exiting....")
+        print("Quitting....")
         sys.exit(1)
     else:
         main()
