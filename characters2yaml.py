@@ -88,21 +88,19 @@ def dump_characters(charyaml):
 # Handling a bunch of cases before dumping.
 def main():
     if "characters.yaml" in files:
-        merge = input("Found a 'characters.yaml' file in current directory. Add new characters? (Y/N/Q): ")
-        while merge.upper() not in {"Y", "N", "Q"}:
+        choice.upper() = input("Found a 'characters.yaml' file in current directory. Add new characters? (Y/N/Q): ")
+        while choice.upper() not in {"Y", "N", "Q"}:
             print("Invalid input. Please try again.")
-            merge = input(
-                "Found a 'characters.yaml' file in current directory." 
-                "Add new characters? (Y/N/Q): "
-            )
-        if merge == "Q":
+            choice = input("Found a 'characters.yaml' file in current directory. "
+            "Add new characters? (Y/N/Q): ")
+        if choice.upper() == "Q":
             print("Exiting....")
             sys.exit(1)
-        elif merge == "Y":
+        elif choice.upper() == "Y":
             print("Adding new characters to 'Uncategorized'...")
             charyaml = open('characters.yaml', 'r+')
             dump_characters(charyaml)
-        elif merge == "N":
+        elif choice.upper() == "N":
             print("Creating seperate 'characters.yaml' as 'characters-new.yaml'")
             newyaml = open('characters-new.yaml', 'w+')
             dump_characters(newyaml)
