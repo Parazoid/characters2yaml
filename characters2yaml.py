@@ -76,8 +76,7 @@ def dump_characters(charyaml):
                     # TODO: Add yaml dumping code here
                     os.chdir('..')
                     continue
-                except Exception as e:
-                    print(e)
+                except:
                     print("Warning! The folder '" + folder + "' does not contain a valid 'char.ini'. Skipping...")
                     os.chdir('..')
                     continue
