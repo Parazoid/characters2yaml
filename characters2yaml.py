@@ -9,7 +9,7 @@ and compiles it into a 'characters.yaml' file for quick tsuserver3 configuration
 To use it, simply place the script in the characters folder you wish to extract 
 names from and run it, it will output a 'characters.yaml' file after finishing. 
 If a 'characters.yaml' yaml file already exists in the current directory the script 
-will add any new characters to the "Uncategorized" category at the bottom of the file.
+will add any new characters to the "Uncategorized" label at the bottom of the file.
 
 This requires the pyYAML module and Python 3.6 or higher.
 
@@ -63,6 +63,7 @@ def check_depend():
                 'or another error occurred.'
             )
 check_depend()
+import yaml
 
 files = os.listdir()
 def dump_characters(charyaml):
@@ -70,17 +71,23 @@ def dump_characters(charyaml):
         if os.path.isdir(folder):
             try: 
                 os.chdir(folder)
-                try: # Check if folder has a ini, dump the folder's name to the yaml if yes.
+                try: # Check if folder has an ini, dump the folder's name to the yaml if yes.
                     open('char.ini', 'r')
-                    print("Adding " + folder)
-                    # TODO: Add yaml dumping code here
+                    # TODO: Finish yaml dumping code
+                    data = yaml.load(charyaml, Loader=yaml.SafeLoader)
+                    print(data) # debugging code
+                    if folder not in data: # If the character isn't in the yaml already, add it.
+                        print("Adding " + folder)
+                        # Add the rest of the code here
+
                     os.chdir('..')
                     continue
-                except:
+                except FileNotFoundError:
                     print("Warning! The folder '" + folder + "' does not contain a valid 'char.ini'. Skipping...")
                     os.chdir('..')
                     continue
-            except:
+            except Exception as e: # debugging
+                print(e)
                 print("Warning! The directory '" + folder + "' is no longer valid.")
                 continue # Just in case the directory list changes and something goes wrong.
         else:
@@ -104,7 +111,7 @@ def main():
             print("Quitting....")
             sys.exit(1)
         elif choice.upper() == "Y":
-            print("Adding new characters to 'Uncategorized'...")
+            print("Adding new characters to '# Uncategorized'...")
             charyaml = open('characters.yaml', 'r+')
             dump_characters(charyaml)
         elif choice.upper() == "N":
