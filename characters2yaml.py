@@ -1,5 +1,5 @@
 # characters2yaml by Paradox
-# Special thanks to longbyte1/oldmud0 for some code snippets and inspiration.
+# Thanks to longbyte1/oldmud0 for inspiration and argoneus for suggestions.
 
 """
 
@@ -18,7 +18,7 @@ This script requires the pyYAML module and Python 3.6 or higher.
 """
 # MIT License
 #
-# Copyright (c) 2020 Paradox <>
+# Copyright (c) 2020 Paradox <https://github.com/Parazoid/>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -72,7 +72,7 @@ def check_depend():
                         'Couldn\'t install it for you, because you don\'t have pip, '
                         'or another error occurred.'
                     )
-                    if input("Enter any key to exit: "):
+                    if input("Enter any key to exit: ") or input("Enter any key to exit: ") == " ":
                         print("Quitting....")
                         sys.exit(1)
 check_depend()
@@ -81,7 +81,7 @@ import yaml
 files = os.listdir()
 def yaml_parser(yamlhandle):
     data = yaml.load(yamlhandle, Loader=yaml.SafeLoader)
-
+    print(data)
     for folder in files: #
         if os.path.isdir(folder): # Skips all non-folders.
             try: 
@@ -94,7 +94,8 @@ def yaml_parser(yamlhandle):
                     print("Warning! No valid 'char.ini' file found inside the " + folder + " directory. Skipping....")
                     continue
                 
-            except: # Rare scenario, but just in case.
+            except Exception as e: # Rare scenario, but just in case.
+                print(e)
                 print("Warning! The directory '" + folder + "' is no longer valid. Skipping....")
                 continue 
         else:
