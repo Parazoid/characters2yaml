@@ -9,8 +9,7 @@ and compiles it into a 'characters.yaml' file for quick tsuserver3 configuration
 To use it, simply place the script in the characters folder you wish to extract 
 names from and run it, it will output a 'characters.yaml' file after finishing. 
 If a 'characters.yaml' file already exists in the current directory the script 
-will either add any new characters to the "Uncategorized" label at the bottom 
-of the file, or create a 'characters-new.yaml' file.
+will ask if you wish to overwrite.
 
 
 This script requires the pyYAML module and Python 3.6 or higher.
@@ -86,18 +85,18 @@ def yaml_parser(yamlhandle):
         if os.path.isdir(folder): # Skips all non-folders.
             try: 
                 inipath = os.path.join(cwd, folder, 'char.ini')
-                if os.path.isfile(inipath): # Checking for valid ini files.
-                    print("Adding " + folder)
-                    data.append(folder)
-                    continue
-                else:
-                    print("Warning! No valid 'char.ini' file found inside the " + folder + " directory. Skipping....")
-                    continue
-                
             except Exception as e: # Rare scenario, but just in case.
                 print(e)
                 print("Warning! The directory '" + folder + "' is no longer valid. Skipping....")
-                continue 
+                continue
+            if os.path.isfile(inipath): # Checking for valid ini files.
+                    print("Adding " + folder)
+                    data.append(folder)
+                    continue
+            else:
+                print("Warning! No valid 'char.ini' file found inside the " + folder + " directory. Skipping....")
+                continue
+                
         else:
             continue
     else:
