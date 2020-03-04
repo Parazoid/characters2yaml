@@ -1,5 +1,5 @@
 # characters2yaml by Paradox
-# Thanks to longbyte1/oldmud0 for inspiration and argoneus for suggestions.
+# Thanks to longbyte1/oldmud0 for inspiration.
 
 """
 
@@ -17,7 +17,7 @@ This script requires the pyYAML module and Python 3.6 or higher.
 """
 # MIT License
 #
-# Copyright (c) 2020 Paradox <https://github.com/Parazoid/>
+# Copyright (c) 2020 Paradox
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
