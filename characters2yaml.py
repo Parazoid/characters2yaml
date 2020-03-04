@@ -11,10 +11,10 @@ names from and run it, it will output a 'characters.yaml' file after finishing.
 If a 'characters.yaml' file already exists in the current directory the script 
 will ask if you wish to overwrite.
 
-
 This script requires the pyYAML module and Python 3.6 or higher.
 
 """
+
 # MIT License
 #
 # Copyright (c) 2020 Paradox
@@ -37,11 +37,8 @@ This script requires the pyYAML module and Python 3.6 or higher.
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-
 import os, sys, subprocess
 from time import sleep
-
-cwd = os.getcwd() # Current working directory
 
 # Installs pyYAML in case it's missing.
 def check_depend():
@@ -86,7 +83,7 @@ def yaml_parser(yamlhandle):
     for folder in files:
         if os.path.isdir(folder): # Skips all non-folders.
             try: 
-                inipath = os.path.join(cwd, folder, 'char.ini')
+                inipath = os.path.join(folder, 'char.ini')
             except: # Rare scenario, but just in case.
                 print("Warning! The directory '" + folder + "' is no longer valid. Skipping....")
                 continue
@@ -119,26 +116,34 @@ def dump_yaml(chars, yamlhandle):
 
 # Handling a bunch of cases before parsing.
 def main():
-    if "characters.yaml" in files:
-        choice = input("Found a 'characters.yaml' file in current directory. "
-        "Overwrite? THIS WILL REPLACE EVERYTHING INSIDE IT (Y/N): ")
-        while choice.upper() not in {"Y", "N"}:
-            print("Invalid input. Please try again.")
+    try:
+        if "characters.yaml" in files:
             choice = input("Found a 'characters.yaml' file in current directory. "
-            "Overwrite? (Y/N): ")
-        if choice.upper() == "N":
-            print("Quitting....")
-            sleep(1.5)
-            sys.exit(1)
-        elif choice.upper() == "Y":
-            print("Overwriting existing 'characters.yaml' file....")
+            "Overwrite? THIS WILL REPLACE EVERYTHING INSIDE IT (Y/N): ")
+            while choice.upper() not in {"Y", "N"}:
+                print("Invalid input. Please try again.")
+                choice = input("Found a 'characters.yaml' file in current directory. "
+                "Overwrite? (Y/N): ")
+            if choice.upper() == "N":
+                print("Quitting....")
+                sleep(1.5)
+                sys.exit(1)
+            elif choice.upper() == "Y":
+                print("Overwriting existing 'characters.yaml' file....")
+                yamlhandle = open('characters.yaml', 'w+')
+                yaml_parser(yamlhandle)
+        else:
+            print("Creating a 'characters.yaml' file....")
             yamlhandle = open('characters.yaml', 'w+')
             yaml_parser(yamlhandle)
-    else:
-        print("Creating a 'characters.yaml' file....")
-        yamlhandle = open('characters.yaml', 'w+')
-        yaml_parser(yamlhandle)
+    except PermissionError:
+        print("Error! No permissions to handle files. Try running with 'sudo' or as an adminstrator.")
+        input("Enter any key to exit: ")
+        print("Quitting....")
+        sys.exit(1)
 
+
+cwd = os.getcwd() # Current working directory
 # Forcing user input, just for the sake of people who don't know how to open the script in a command prompt.
 print("Enter any key to start (or Q to exit).")
 while True:
