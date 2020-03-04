@@ -83,6 +83,7 @@ files = os.listdir()
 hasvalid = False
 def yaml_parser(yamlhandle):
     data = yaml.load(yamlhandle, Loader=yaml.SafeLoader) or [] # The 'or' makes sure the variable receives a list
+    global hasvalid
     for folder in files:
         if os.path.isdir(folder): # Skips all non-folders.
             try: 
@@ -93,7 +94,7 @@ def yaml_parser(yamlhandle):
             if os.path.isfile(inipath): # Checking for valid ini files.
                     print("Adding " + folder)
                     data.append(folder)
-                    global hasvalid
+                    hasvalid = True
                     continue
             else:
                 print("Warning! No valid 'char.ini' file found inside the " + folder + " directory. Skipping....")
