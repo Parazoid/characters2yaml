@@ -64,6 +64,12 @@ def check_depend():
                 try:
                     subprocess.check_call([
                         sys.executable, '-m', 'pip', 'install', '--user','pyYAML'])
+                except PermissionError:
+                    print("Error! No permissions to install pyYAML. Try running with 'sudo' or as an adminstrator.")
+                    input("Enter any key to exit: ")
+                    print("Quitting....")
+                    sys.exit(1)
+                    
                 except subprocess.CalledProcessError:
                     print(
                         'Couldn\'t install it for you, because you don\'t have pip, '
@@ -105,9 +111,9 @@ def yaml_parser(yamlhandle):
     else: # Dumps everything in 'data' to a YAML file once the loop is finished.
         dump_yaml(data, yamlhandle)
 
-def dump_yaml(chars, yamlhandle):
+def dump_yaml(chars, yamlhandle): # Dumps whichever data it receives into a yaml format.
         print("Dumping....")
-        yaml.safe_dump(chars, yamlhandle)
+        yaml.safe_dump(chars, yamlhandle, default_flow_style=False)
         print("Finished dumping the character names to the '" + os.path.basename(yamlhandle.name) + "' file.")
         input("Enter any key to exit: ")
         print("Quitting....")
