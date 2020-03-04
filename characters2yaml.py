@@ -39,6 +39,7 @@ This script requires the pyYAML module and Python 3.6 or higher.
 
 
 import os, sys, subprocess
+from time import sleep
 
 cwd = os.getcwd() # Current working directory
 
@@ -71,13 +72,15 @@ def check_depend():
                         'Couldn\'t install it for you, because you don\'t have pip, '
                         'or another error occurred.'
                     )
-                    if input("Enter any key to exit: ") or input("Enter any key to exit: ") == " ":
+                    key = input("Enter any key to exit: ")
+                    if key:
                         print("Quitting....")
                         sys.exit(1)
 check_depend()
 import yaml
 
 files = os.listdir()
+hasvalid = False
 def yaml_parser(yamlhandle):
     data = yaml.load(yamlhandle, Loader=yaml.SafeLoader) or [] # The 'or' makes sure the variable receives a list
     for folder in files:
@@ -90,13 +93,19 @@ def yaml_parser(yamlhandle):
             if os.path.isfile(inipath): # Checking for valid ini files.
                     print("Adding " + folder)
                     data.append(folder)
+                    global hasvalid
                     continue
             else:
                 print("Warning! No valid 'char.ini' file found inside the " + folder + " directory. Skipping....")
                 continue
-                
         else:
             continue
+    if not hasvalid:
+        print("Error: This characters directory has no valid character folders. Canceled dumping.")
+        key = input("Enter any key to exit: ")
+        if key:
+            print("Quitting....")
+            sys.exit(1)
     else: # Dumps everything in 'data' to a YAML file once the loop is finished.
         dump_yaml(data, yamlhandle)
 
@@ -104,7 +113,8 @@ def dump_yaml(chars, yamlhandle):
         print("Dumping....")
         yaml.safe_dump(chars, yamlhandle)
         print("Finished dumping the character names to the '" + os.path.basename(yamlhandle.name) + "' file.")
-        if input("Enter any key to exit: "):
+        key = input("Enter any key to exit: ")
+        if key:
             print("Quitting....")
             sys.exit(1)
 
@@ -112,13 +122,15 @@ def dump_yaml(chars, yamlhandle):
 # Handling a bunch of cases before parsing.
 def main():
     if "characters.yaml" in files:
-        choice = input("Found a 'characters.yaml' file in current directory. Overwrite? (Y/N): ")
+        choice = input("Found a 'characters.yaml' file in current directory. "
+        "Overwrite? THIS WILL REPLACE EVERYTHING INSIDE IT (Y/N): ")
         while choice.upper() not in {"Y", "N"}:
             print("Invalid input. Please try again.")
             choice = input("Found a 'characters.yaml' file in current directory. "
             "Overwrite? (Y/N): ")
         if choice.upper() == "N":
             print("Quitting....")
+            sleep(1.5)
             sys.exit(1)
         elif choice.upper() == "Y":
             print("Overwriting existing 'characters.yaml' file....")
@@ -138,6 +150,7 @@ while True:
         sys.exit(1)
     elif os.path.basename(cwd) != "characters": # Checks that we're in /base/characters folder.
         print("Error: This script only works in the 'characters' folder.")
+        input("Enter any key to exit: ")
         print("Quitting....")
         sys.exit(1)
     else:
