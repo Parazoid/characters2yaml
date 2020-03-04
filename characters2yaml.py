@@ -79,9 +79,8 @@ import yaml
 
 files = os.listdir()
 def yaml_parser(yamlhandle):
-    data = yaml.load(yamlhandle, Loader=yaml.SafeLoader) # This makes a "NoneType" object instead of a list, but why?
-    print(data) # Prints "None"
-    for folder in files: #
+    data = yaml.load(yamlhandle, Loader=yaml.SafeLoader) or [] # The 'or' makes sure the variable receives a list
+    for folder in files:
         if os.path.isdir(folder): # Skips all non-folders.
             try: 
                 inipath = os.path.join(cwd, folder, 'char.ini')
@@ -90,7 +89,7 @@ def yaml_parser(yamlhandle):
                 continue
             if os.path.isfile(inipath): # Checking for valid ini files.
                     print("Adding " + folder)
-                    data.append(folder) # This causes an attribute type exception.
+                    data.append(folder)
                     continue
             else:
                 print("Warning! No valid 'char.ini' file found inside the " + folder + " directory. Skipping....")
