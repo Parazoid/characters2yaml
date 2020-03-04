@@ -114,8 +114,8 @@ def dump_yaml(chars, yamlhandle):
 # Handling a bunch of cases before parsing.
 def main():
     if "characters.yaml" in files:
-        choice = input("Found a 'characters.yaml' file in current directory. Overwrite? (Y/N/Q): ")
-        while choice.upper() not in {"Y", "N", "Q"}:
+        choice = input("Found a 'characters.yaml' file in current directory. Overwrite? (Y/N): ")
+        while choice.upper() not in {"Y", "N"}:
             print("Invalid input. Please try again.")
             choice = input("Found a 'characters.yaml' file in current directory. "
             "Overwrite? (Y/N): ")
