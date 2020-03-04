@@ -49,9 +49,9 @@ def check_depend():
     if py_version.major < 3 or (py_version.major == 3 and py_version.minor < 6):
         print("This script requires at least Python 3.6! Your version is: {}.{}"
             .format(py_version.major, py_version.minor))
-        if input("Enter any key to exit: "):
-            print("Quitting....")
-            sys.exit(1)
+        input("Enter any key to exit: ")
+        print("Quitting....")
+        sys.exit(1)
     try:
         import yaml
     except ModuleNotFoundError:
@@ -72,10 +72,9 @@ def check_depend():
                         'Couldn\'t install it for you, because you don\'t have pip, '
                         'or another error occurred.'
                     )
-                    key = input("Enter any key to exit: ")
-                    if key:
-                        print("Quitting....")
-                        sys.exit(1)
+                    input("Enter any key to exit: ")
+                    print("Quitting....")
+                    sys.exit(1)
 check_depend()
 import yaml
 
@@ -103,10 +102,9 @@ def yaml_parser(yamlhandle):
             continue
     if not hasvalid:
         print("Error: This characters directory has no valid character folders. Canceled dumping.")
-        key = input("Enter any key to exit: ")
-        if key:
-            print("Quitting....")
-            sys.exit(1)
+        input("Enter any key to exit: ")
+        print("Quitting....")
+        sys.exit(1)
     else: # Dumps everything in 'data' to a YAML file once the loop is finished.
         dump_yaml(data, yamlhandle)
 
@@ -114,10 +112,9 @@ def dump_yaml(chars, yamlhandle):
         print("Dumping....")
         yaml.safe_dump(chars, yamlhandle)
         print("Finished dumping the character names to the '" + os.path.basename(yamlhandle.name) + "' file.")
-        key = input("Enter any key to exit: ")
-        if key:
-            print("Quitting....")
-            sys.exit(1)
+        input("Enter any key to exit: ")
+        print("Quitting....")
+        sys.exit(1)
 
 
 # Handling a bunch of cases before parsing.
