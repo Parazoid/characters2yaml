@@ -89,7 +89,7 @@ def yaml_parser(yamlhandle):
     for folder in files:
         if os.path.isdir(folder): # Skips all non-folders.
             try: 
-                deskpath = os.path.join(folder, 'defensedesk')
+                deskpath = os.path.join(folder, 'stand.png')
             except: # Rare scenario, but just in case.
                 print("Warning! The directory '" + folder + "' is no longer valid. Skipping....")
                 continue
@@ -99,7 +99,7 @@ def yaml_parser(yamlhandle):
                     hasvalid = True
                     continue
             else:
-                print("Warning! No valid 'defensedesk' file found inside the " + folder + " directory. Skipping....")
+                print("Warning! No valid 'stand.png' file found inside the " + folder + " directory. Skipping....")
                 continue
         else:
             continue
