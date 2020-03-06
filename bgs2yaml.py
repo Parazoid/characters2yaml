@@ -1,14 +1,14 @@
-# characters2yaml by Paradox
+# bgs2yaml by Paradox
 # Thanks to longbyte1/oldmud0 for inspiration.
 
 """
 
-This script extracts character names from each character folder in the /base/characters directory of AO2 
-and compiles it into a 'characters.yaml' file for quick tsuserver3 configuration.
+This script extracts background names from each background folder in the /base/background directory of AO2 
+and compiles it into a 'backgrounds.yaml' file for quick tsuserver3 configuration.
 
-To use it, simply place the script in the characters folder you wish to extract 
-names from and run it, it will output a 'characters.yaml' file after finishing. 
-If a 'characters.yaml' file already exists in the current directory the script 
+To use it, simply place the script in the  folder you wish to extract 
+names from and run it, it will output a 'backgrounds.yaml' file after finishing. 
+If a 'backgrounds.yaml' file already exists in the current directory the script 
 will ask if you wish to overwrite.
 
 This script requires the pyYAML module and Python 3.6 or higher.
@@ -89,32 +89,32 @@ def yaml_parser(yamlhandle):
     for folder in files:
         if os.path.isdir(folder): # Skips all non-folders.
             try: 
-                inipath = os.path.join(folder, 'char.ini')
+                deskpath = os.path.join(folder, 'defensedesk')
             except: # Rare scenario, but just in case.
                 print("Warning! The directory '" + folder + "' is no longer valid. Skipping....")
                 continue
-            if os.path.isfile(inipath): # Checking for valid ini files.
+            if os.path.isfile(deskpath): # Checking for valid background files.
                     print("Adding " + folder)
                     data.append(folder)
                     hasvalid = True
                     continue
             else:
-                print("Warning! No valid 'char.ini' file found inside the " + folder + " directory. Skipping....")
+                print("Warning! No valid 'defensedesk' file found inside the " + folder + " directory. Skipping....")
                 continue
         else:
             continue
     if not hasvalid:
-        print("Error: This characters directory has no valid character folders. Canceled dumping.")
+        print("Error: This background directory has no valid background folders. Canceled dumping.")
         input("Enter any key to exit: ")
         print("Quitting....")
         sys.exit(1)
     else: # Dumps everything in 'data' to a YAML file once the loop is finished.
         dump_yaml(data, yamlhandle)
 
-def dump_yaml(chars, yamlhandle): # Dumps whichever data it receives into a yaml format.
+def dump_yaml(stream, yamlhandle): # Dumps whichever data it receives into a yaml format.
         print("Dumping....")
-        yaml.safe_dump(chars, yamlhandle, default_flow_style=False)
-        print("Finished dumping the character names to the '" + os.path.basename(yamlhandle.name) + "' file.")
+        yaml.safe_dump(stream, yamlhandle, default_flow_style=False)
+        print("Finished dumping the background names to the '" + os.path.basename(yamlhandle.name) + "' file.")
         input("Enter any key to exit: ")
         print("Quitting....")
         sys.exit(1)
@@ -123,24 +123,24 @@ def dump_yaml(chars, yamlhandle): # Dumps whichever data it receives into a yaml
 # Handling a bunch of cases before parsing.
 def main():
     try:
-        if "characters.yaml" in files:
-            choice = input("Found a 'characters.yaml' file in current directory. "
+        if "backgrounds.yaml" in files:
+            choice = input("Found a 'backgrounds.yaml' file in current directory. "
             "Overwrite? THIS WILL REPLACE EVERYTHING INSIDE IT (Y/N): ")
             while choice.upper() not in {"Y", "N"}:
                 print("Invalid input. Please try again.")
-                choice = input("Found a 'characters.yaml' file in current directory. "
+                choice = input("Found a 'backgrounds.yaml' file in current directory. "
                 "Overwrite? (Y/N): ")
             if choice.upper() == "N":
                 print("Quitting....")
                 sleep(1.5)
                 sys.exit(1)
             elif choice.upper() == "Y":
-                print("Overwriting existing 'characters.yaml' file....")
-                yamlhandle = open('characters.yaml', 'w+')
+                print("Overwriting existing 'backgrounds.yaml' file....")
+                yamlhandle = open('backgrounds.yaml', 'w+')
                 yaml_parser(yamlhandle)
         else:
-            print("Creating a 'characters.yaml' file....")
-            yamlhandle = open('characters.yaml', 'w+')
+            print("Creating a 'backgrounds.yaml' file....")
+            yamlhandle = open('backgrounds.yaml', 'w+')
             yaml_parser(yamlhandle)
     except PermissionError:
         print("Error! No permissions to handle files. Try running with 'sudo' or as an adminstrator.")
@@ -157,8 +157,8 @@ while True:
     if cmd == "Q":
         print("Quitting....")
         sys.exit(1)
-    elif os.path.basename(cwd) != "characters": # Checks that we're in /base/characters folder.
-        print("Error: This script only works in the 'characters' folder.")
+    elif os.path.basename(cwd) != "background": # Checks that we're in /base/backgrounds folder.
+        print("Error: This script only works in the 'background' folder.")
         input("Enter any key to exit: ")
         print("Quitting....")
         sys.exit(1)

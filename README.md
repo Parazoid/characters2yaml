@@ -1,12 +1,14 @@
-# **CHARACTERS2YAML**
-### This is a script that turns AO2 character folders into usable YAML files. 
-It works by extracting character names from each character folder in the /base/characters directory of [Attorney Online 2](https://aceattorneyonline.com)
-and compiles it into a 'characters.yaml' file for quick [tsuserver3](https://github.com/AttorneyOnline/tsuserver3) configuration.
-It is the characters.yaml equivalent of the [music2yaml](https://gist.github.com/oldmud0/4af137512e6419a161218f705ceee16f) script made by oldmud1 a while ago. 
+# **BGS2YAML**
+### This is a script that turns AO2 background folders into usable YAML files.
+***The characters version of this script can be found [here](https://github.com/Parazoid/characters2yaml)***
 
-To use it, simply place the script in the characters folder you wish to extract 
-names from and run it, it will output a 'characters.yaml' file after finishing. 
-If a 'characters.yaml' file already exists in the current directory the script 
+It works by extracting character names from each background folder in the /base/background directory of [Attorney Online 2](https://aceattorneyonline.com)
+and compiles it into a 'backgrounds.yaml' file for quick [tsuserver3](https://github.com/AttorneyOnline/tsuserver3) configuration.
+It is the backgrounds.yaml equivalent of the [music2yaml](https://gist.github.com/oldmud0/4af137512e6419a161218f705ceee16f) script made by oldmud1 a while ago. 
+
+To use it, simply place the script in the background folder you wish to extract 
+names from and run it, it will output a 'backgrounds.yaml' file after finishing. 
+If a 'backgroundss.yaml' file already exists in the current directory the script 
 will ask if you wish to overwrite.
 ***(Overwriting will erase everything in your YAML file.)***
 
@@ -15,7 +17,7 @@ will ask if you wish to overwrite.
 
 
 #### TODO:
-- Add a way to insert new characters into an existing YAML file non-disruptingly.
+- Add a way to insert new backgrounds into an existing YAML file non-disruptingly.
 - Add a way to preserve YAML comments.
 
 If I screwed anything up or if you found a typo somewhere, feel free to contact me!
