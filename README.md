@@ -23,10 +23,10 @@ will ask if you wish to overwrite.
 If I screwed anything up or if you found a typo somewhere, feel free to contact me!
 Discord Contact: __Paradox#1001__
 
-## License
+## LICENSE
 Copyright **(c)** 2020 Paradox
 
 This script is licensed under the MIT license. In short you're free to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of it as long as it includes this copyright notice.
-For the full license term check the [LICENSE](https://github.com/Parazoid/characters2yaml/blob/master/LICENSE.txt) file.
+For the full license terms check the [LICENSE](https://github.com/Parazoid/characters2yaml/blob/master/LICENSE.txt) file.
 
 Special thanks to anyone who helped me cobble this thing up.
