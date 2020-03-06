@@ -1,6 +1,6 @@
 # **BGS2YAML**
 ### This is a script that turns AO2 background folders into usable YAML files.
-***The characters version of this script can be found [here](https://github.com/Parazoid/characters2yaml)***
+***The characters version of this script can be found [here](https://github.com/Parazoid/characters2yaml).***
 
 It works by extracting character names from each background folder in the /base/background directory of [Attorney Online 2](https://aceattorneyonline.com)
 and compiles it into a 'backgrounds.yaml' file for quick [tsuserver3](https://github.com/AttorneyOnline/tsuserver3) configuration.
