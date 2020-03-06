@@ -1,5 +1,7 @@
 # **CHARACTERS2YAML**
-### This is a script that turns AO2 character folders into usable YAML files. 
+### This is a script that turns AO2 character folders into usable YAML files.
+***The backgrounds version of this script can be found [here](https://github.com/Parazoid/characters2yaml/tree/bgs2yaml).***
+
 It works by extracting character names from each character folder in the /base/characters directory of [Attorney Online 2](https://aceattorneyonline.com)
 and compiles it into a 'characters.yaml' file for quick [tsuserver3](https://github.com/AttorneyOnline/tsuserver3) configuration.
 It is the characters.yaml equivalent of the [music2yaml](https://gist.github.com/oldmud0/4af137512e6419a161218f705ceee16f) script made by oldmud1 a while ago. 
